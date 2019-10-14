@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/hm/tools/updbackground.sh loop &
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[en_US]=loop_updbackground
+Comment[en_US]=auto change wallpaper
+X-GNOME-Autostart-Delay=0
