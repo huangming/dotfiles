@@ -29,10 +29,10 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin 'Shougo/vimproc'
 " Plugin 'Shougo/vimshell.vim'
 
-Plugin 'bufexplorer.zip'
 let g:bufExplorerSplitBelow=1 
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'jlanzarotta/bufexplorer'
 if executable('ctags')
     Plugin 'majutsushi/tagbar'
 endif

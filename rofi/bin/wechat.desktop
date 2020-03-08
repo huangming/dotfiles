@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Exec=sh /home/hm/tools/wechat.sh &
+X-GNOME-Autostart-enabled=false
+NoDisplay=false
+Hidden=false
+Name[en_US]=wechat
+Comment[en_US]=wechat
+X-GNOME-Autostart-Delay=0

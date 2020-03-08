@@ -26,7 +26,7 @@ alias vi='vimx'
 alias vim='vimx'
 
 # rm files safe
-alias rm='mv -t /tmp/trash'
+alias rm='mv -t /tmp'
 
 # start vbox machine friendly
 alias svbox='VBoxManage startvm' 
@@ -35,7 +35,7 @@ alias evbox='function __evbox(){ VBoxManage controlvm "$*" savestate;unset -f __
 # exec fish
 
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$HOME/bin:$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
@@ -52,4 +52,9 @@ export TERM=xterm-256color
 # else
 #     PS1="\[\033[1;32m\]\u@\h: \[\033[0;33m\]\A \[\033[36m\]\w > \[\033[0;38m\]"
 # fi
-
+# if [ -f `which powerline-daemon` ]; then
+#   powerline-daemon -q
+#   POWERLINE_BASH_CONTINUATION=1
+#   POWERLINE_BASH_SELECT=1
+#   . /usr/share/powerline/bash/powerline.sh
+# fi
