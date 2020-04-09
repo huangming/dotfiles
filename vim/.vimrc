@@ -18,26 +18,24 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-" alternatively, pass a path where Vundle should install plugins
-call vundle#begin('~/.vim/bundle')
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+" https://github.com/junegunn/vim-plug
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" Plugin 'Shougo/vimproc'
-" Plugin 'Shougo/vimshell.vim'
+" Plug 'Shougo/vimproc'
+" Plug 'Shougo/vimshell.vim'
 
 let g:bufExplorerSplitBelow=1 
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'jlanzarotta/bufexplorer'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'jlanzarotta/bufexplorer'
 if executable('ctags')
-    Plugin 'majutsushi/tagbar'
+    Plug 'majutsushi/tagbar'
 endif
-Plugin 'easymotion/vim-easymotion'
-Plugin 'kien/ctrlp.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'kien/ctrlp.vim'
 " let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store
@@ -52,20 +50,20 @@ let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 if executable('git')
-    Plugin 'tpope/vim-fugitive'
+    Plug 'tpope/vim-fugitive'
 endif
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'junegunn/vim-easy-align'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'junegunn/vim-easy-align'
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 " 快速注释
-Plugin 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 autocmd FileType vim set commentstring=\"\ %s
 autocmd FileType vbnet set commentstring=\'\ %s
-Plugin 'vim-scripts/VisIncr'
+Plug 'vim-scripts/VisIncr'
 " xptemplate不兼容别人写的snipets，更换补全引擎
-" Plugin 'drmingdrmer/xptemplate'
+" Plug 'drmingdrmer/xptemplate'
 "--------------------------------------------------------
 " => xptemplate.vim
 "--------------------------------------------------------
@@ -98,10 +96,10 @@ Plugin 'vim-scripts/VisIncr'
 "--------------------------------------------------------
 
 " Track the engine.
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
-Plugin 'justinj/vim-react-snippets'
+Plug 'honza/vim-snippets'
+Plug 'justinj/vim-react-snippets'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -116,7 +114,7 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/vim-snippets/UltiSnips',$
 " ------------------------------------------
 " 括号高亮
 "\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-Plugin 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
 \	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
@@ -145,7 +143,7 @@ let g:rainbow_conf = {
 \}
 
 " ------------------------------------------
-Plugin 'Shougo/neocomplcache.vim'
+Plug 'Shougo/neocomplcache.vim'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -215,25 +213,27 @@ let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 " ------------------------------------------
 
-Plugin 'itchyny/calendar.vim'
+Plug 'itchyny/calendar.vim'
 let g:calendar_google_calendar = 0
 let g:calendar_google_task = 0
 let g:calendar_task=1
 let g:calendar_event_start_time=1
-Plugin 'Stormherz/tablify'
-Plugin 'vimwiki/vimwiki'
-Plugin 'yianwillis/vimcdoc'
-Plugin 'huangming/myvimplugin'
+let g:calendar_cache_directory=$HOME.'/Nutstore/documents/vim/vimbackup/vimwikiNote/calendar/'
 
-Plugin 'VOoM'
-Plugin 'vim-scripts/txt.vim--xu'
-Plugin 'ap/vim-css-color'
-Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'Stormherz/tablify'
+Plug 'vimwiki/vimwiki'
+Plug 'yianwillis/vimcdoc'
+Plug 'huangming/myvimplugin'
+
+Plug 'vim-scripts/VOoM'
+Plug 'vim-scripts/txt.vim--xu'
+Plug 'ap/vim-css-color'
+Plug 'nathanaelkane/vim-indent-guides'
   let g:indent_guides_enable_on_vim_startup = 1
-Plugin 'michaeljsmith/vim-indent-object'
+Plug 'michaeljsmith/vim-indent-object'
   let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown", "vbnet"]
 
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " let g:syntastic_python_checkers = ['pylint']
 " let g:syntastic_python_checkers = ['python']
 let g:syntastic_enable_python_checker = 0
@@ -248,31 +248,31 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 " if has('gui_running')
-"     Plugin 'Lokaltog/vim-powerline'
+"     Plug 'Lokaltog/vim-powerline'
 " endif
-Plugin 'Color-Scheme-Explorer'
-Plugin 'baskerville/bubblegum'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'tomasr/molokai'
+Plug 'vim-scripts/Color-Scheme-Explorer'
+Plug 'baskerville/bubblegum'
+Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'tomasr/molokai'
 
 " Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
+" Plug 'git://git.wincent.com/command-t.git'
 
 " git repos on your local machine ( .e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
+" Plug 'file:///home/gmarik/path/to/plugin'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtpa': 'vim/'}
+" Plug 'rstacruz/sparkup', {'rtpa': 'vim/'}
 
 " Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
+" Plug 'user/L9', {'name': 'newL9'}
 
 
+" Initialize plugin system
+call plug#end()
 
-" non github repos
-call vundle#end()
 filetype plugin indent on     " required!
  "
  " Brief help
