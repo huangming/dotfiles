@@ -1,3 +1,5 @@
 [user]
 	email = wangbandi@gmail.com
 	name = huangming
+[oh-my-zsh]
+	hide-status = 1
