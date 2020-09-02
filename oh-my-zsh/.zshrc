@@ -114,6 +114,7 @@ alias evbox='function __evbox(){ VBoxManage controlvm "$*" savestate;unset -f __
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$HOME/bin:$PYENV_ROOT/bin:$PATH"
+export PATH=$PATH:~/.local/bin
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi

@@ -1,0 +1,7 @@
+Nutstore
+.cache
+.ansible
+.nutstore
+.local
+.npm/_cacache
+.vagrant.d/boxes
