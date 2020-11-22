@@ -10,5 +10,6 @@
     -e VIDEO_GID=`getent group video | cut -d: -f3` \
     -e GID=`id -g` \
     -e UID=`id -u` \
+    --name qq \
     bestwu/qq
     # bestwu/qq:office

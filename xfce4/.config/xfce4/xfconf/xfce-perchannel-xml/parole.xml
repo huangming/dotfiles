@@ -13,6 +13,6 @@
     <property name="volume" type="int" value="50"/>
   </property>
   <property name="folders" type="empty">
-    <property name="last-used-media" type="string" value="/run/media/hm/cbd_drive/tmp"/>
+    <property name="last-used-media" type="string" value="/run/media/hm"/>
   </property>
 </channel>
