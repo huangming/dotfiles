@@ -23,7 +23,7 @@ filetype off                  " required
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 " https://github.com/junegunn/vim-plug
-
+" :PlugInstall PlugUpdate PlugUpgrade PlugDiff
 " Plug 'Shougo/vimproc'
 " Plug 'Shougo/vimshell.vim'
 
