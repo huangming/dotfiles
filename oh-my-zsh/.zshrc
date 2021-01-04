@@ -117,8 +117,8 @@ export PATH="$HOME/bin:$PYENV_ROOT/bin:$PATH"
 export PATH=$PATH:~/.local/bin
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
-eval "$(pyenv virtualenv-init -)"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -133,4 +133,5 @@ eval "$(pyenv virtualenv-init -)"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+HIST_STAMPS="yyyy-mm-dd" 
