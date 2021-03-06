@@ -7,9 +7,9 @@ do
     CURRENT_BRIGHTNESS=$(cat /sys/class/backlight/intel_backlight/brightness)
     MAX_BRIGHTNESS=$(cat /sys/class/backlight/intel_backlight/max_brightness)
     BRIGHTNESS_PERCENT=$(printf "%d%%" $((CURRENT_BRIGHTNESS*100/MAX_BRIGHTNESS)))
-	info="🔆$BRIGHTNESS_PERCENT  🍗$(free -h | grep Mem | awk '{ print $3 }')"
+	info="🔆$BRIGHTNESS_PERCENT  💧$(free -h | grep Mem | awk '{ print $3 }')"
     # echo "➡️ $info - ${line} ⬅️" || exit 1
-    echo " $info  `echo $line|sed 's#|##g'`" || exit 1
+    echo " 💧$(free -h | grep Mem | awk '{ print $3 }') `echo $line|sed 's#|##g'` 🔆$BRIGHTNESS_PERCENT " || exit 1
     sleep 1
 done
 
