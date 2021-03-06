@@ -342,9 +342,9 @@ bar {
 # Volume
 ###############################################################################
 # debian: sudo apt install -y alsa-utils
-bindsym XF86AudioRaiseVolume exec "amixer set Master 5%+;notify-send 声音:`amixer | grep 'Playback' | awk 'NR==3{;print $5}'`"
-bindsym XF86AudioLowerVolume exec "amixer set Master 5%-;notify-send 声音:`amixer | grep 'Playback' | awk 'NR==3{;print $5}'`"
-bindsym XF86AudioMute exec "amixer set Master toggle;notify-send 声音:`amixer | grep 'Playback' | awk 'NR==3{;print $6}'`"
+bindsym XF86AudioRaiseVolume exec "amixer set Master 5%+;notify-send  -i audio-volume-medium -t 700 音量:`amixer | grep 'Playback' | awk 'NR==3{;print $5}'`"
+bindsym XF86AudioLowerVolume exec "amixer set Master 5%-;notify-send  -i audio-volume-medium -t 700 音量:`amixer | grep 'Playback' | awk 'NR==3{;print $5}'`"
+bindsym XF86AudioMute exec "amixer set Master toggle;notify-send  -i audio-volume-medium `amixer | grep 'Playback' | awk 'NR==3{;print $6}'`"
 
 # Audio controls (debian only)(now provided by Plasma)
 # bindsym XF86AudioLowerVolume exec /home/hm/.config/i3/audio.sh --down

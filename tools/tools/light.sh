@@ -11,5 +11,5 @@ else
     NEW_BRIGHTNESS=$2
 fi
 PERCENT=$(printf "%d%%" $((NEW_BRIGHTNESS*100/MAX_BRIGHTNESS)))
-notify-send 亮度:[$PERCENT]
+notify-send -t 500 亮度:[$PERCENT]
 echo $NEW_BRIGHTNESS > /sys/class/backlight/intel_backlight/brightness 
