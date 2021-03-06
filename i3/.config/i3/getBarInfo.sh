@@ -3,9 +3,14 @@
 
 i3status | while :
 do
-        read line
-	info="🔆 $( light ) ⛔ $(free -m | grep Mem | awk '{ print $3 }')"
-        echo "➡️ $info - $line ⬅️" || exit 1
+    read line
+    CURRENT_BRIGHTNESS=$(cat /sys/class/backlight/intel_backlight/brightness)
+    MAX_BRIGHTNESS=$(cat /sys/class/backlight/intel_backlight/max_brightness)
+    BRIGHTNESS_PERCENT=$(printf "%d%%" $((CURRENT_BRIGHTNESS*100/MAX_BRIGHTNESS)))
+	info="🔆$BRIGHTNESS_PERCENT  🍗$(free -h | grep Mem | awk '{ print $3 }')"
+    # echo "➡️ $info - ${line} ⬅️" || exit 1
+    echo " $info  `echo $line|sed 's#|##g'`" || exit 1
+    sleep 1
 done
 
 

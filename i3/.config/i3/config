@@ -13,12 +13,13 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-# font pango:monospace 8
+font pango:monospace 8
 # font pango:Monaco 7
 # font pango:Ubuntu 8
-font pango:FreeMonoBold 8
+# font pango:FreeMonoBold 8
 # font pango:Noto regular 8
-
+# font xft:Jetbrains Mono 0
+# font pango:Jetbrains Mono 0
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -38,30 +39,65 @@ floating_modifier $mod
 exec --no-startup-id nm-applet
 # exec --no-startup-id xcompmgr -FCf -nc -t -5 &
 exec --no-startup-id xcompmgr
+bindsym Control+Mod1+plus exec transset -a --dec 0.1
+bindsym Control+Mod1+minus exec transset -a --inc 0.1
 
-exec --no-startup-id cinnamon-screensaver
-bindsym $mod+Escape exec cinnamon-screensaver-command -l
+# automounter for removable media
+# sudo apt install udiskie
+exec --no-startup-id udiskie --tra
 
-exec --no-startup-id ~/tools/feh.sh loop &
+exec --no-startup-id sh -c "(sleep 30 && exec ~/.nutstore/dist/bin/nutstore-pydaemon.py)"
+
+# exec --no-startup-id cinnamon-screensaver
+# bindsym $mod+Escape exec cinnamon-screensaver-command -l
+# Lock System
+# bindsym $mod+Control+l exec i3lock -c 2E8B57 #&& sleep 3s && systemctl suspend
+bindsym $mod+Control+l exec i3lock -i ~/Pictures/desktop/screenlock.png #&& sleep 3s && systemctl suspend
+# 关闭屏保
+# exec --no-startup-id xset s 0
+# exec --no-startup-id xset dpms 0 0 0
+
 ### ibus ###
-exec --no-startup-id export XMODIFIERS=@im=ibus
-exec --no-startup-id export GTK_IM_MODULE=ibus
-exec --no-startup-id export QT_IM_MODULE=ibus
-exec --no-startup-id ibus-daemon -xdr
+# exec --no-startup-id export XMODIFIERS=@im=ibus
+# exec --no-startup-id export GTK_IM_MODULE=ibus
+# exec --no-startup-id export QT_IM_MODULE=ibus
+# exec --no-startup-id ibus-daemon -xdr
 # exec --no-startup-id ibus-daemon -d
 #status bar
-# exec_always --no-startup-id ~/tools/polybar.sh
-# exec --no-startup-id tint2
+#exec_always --no-startup-id ~/tools/polybar.sh
+#exec --no-startup-id tint2
 
 # --------------------------------------------
 
 # start a terminal
-# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec i3-sensible-terminal 
 # bindsym $mod+Return exec fish
-bindsym $mod+Return exec gnome-terminal
+# bindsym $mod+Return exec gnome-terminal
+# bindsym $mod+Return exec konsole
+# Start a floating terminal
+bindsym $mod+Shift+Return exec i3-sensible-terminal --role floating_terminal
 
-# kill focused window
-bindsym $mod+Shift+q kill
+###############################################################################
+# Special windows
+###############################################################################
+for_window [class="Pavucontrol"] floating enable, border normal
+for_window [class="copyq"] floating enable
+for_window [class="Arandr"] floating enable
+for_window [class="Pinentry-gtk-2"] floating enable
+for_window [class="rdesktop"] floating disable
+for_window [title="(?i)ssh"]  move to workspace $ws6
+for_window [title="(?i)ssh"]  layout tabbed
+
+for_window [title="(?i)firefox"]  move to workspace $ws3
+
+for_window [class="VirtualBox"] floating enable
+for_window [class="(?i)VirtualBox" title="(?i)Manager"] layout tabbed
+for_window [class="(?i)VirtualBox" title="(?i)win7"]  move to workspace $ws7
+assign [class="(?i)VirtualBox" title="(?i)win7"]  move to workspace $ws7
+
+for_window [window_role="pop-up"]       floating enable
+for_window [class="Menu"]               floating enable
+for_window [title="Preferences$"]       floating enable
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
@@ -69,9 +105,25 @@ bindsym $mod+Shift+q kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -fn 'Ubuntu-12'"
-bindsym $mod+d exec rofi -show drun -show-icons
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -fn 'Ubuntu-12'"
+# bindsym $mod+d exec rofi -show drun -show-icons
+bindsym $mod+d exec "/usr/bin/rofi -modi combi -combi-modi window,drun -show combi -show-icons"
 
+bindsym XF86Search exec  --no-startup-id exec firefox
+
+bindsym $mod+Shift+v exec VBoxManage startvm "win7" --type gui
+
+# screenrecord
+#
+# key-mon  -t clear-command -l  --nodecorated --backgroundless --no-press-fadeout=1
+
+
+###############################################################################
+# windows and workspaces
+###############################################################################
+
+# kill focused window
+bindsym $mod+Shift+q kill
 
 # change focus
 bindsym $mod+j focus left
@@ -140,6 +192,10 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+#
+# hide or show a window
+bindSym $mod+minus move scratchpad
+bindSym $mod+plus scratchpad show
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -213,7 +269,9 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+###############################################################################
 # resize window (you can also use the mouse for that)
+###############################################################################
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -252,7 +310,9 @@ client.urgent           #2f343a #900000 #ffffff #900000
 # finds out, if available)
 bar {
         i3bar_command i3bar -t
-        status_command i3status
+        # status_command /home/hm/.config/i3/i3status-debug.sh
+        status_command /home/hm/.config/i3/getBarInfo.sh
+        # status_command i3status
         separator_symbol " "
         colors {
             statusline #20B2AA
@@ -271,36 +331,56 @@ bar {
         }
         # tray_output primary
         # mode hide
-        # status_command i3blocks
+        #status_command i3blocks
         # status_command conky -c $HOME/.config/i3/conkyrc_bar
         position top
         # position bottom
 }
 
 
+###############################################################################
 # Volume
+###############################################################################
+# debian: sudo apt install -y alsa-utils
 bindsym XF86AudioRaiseVolume exec "amixer set Master 5%+;notify-send 声音:`amixer | grep 'Playback' | awk 'NR==3{;print $5}'`"
 bindsym XF86AudioLowerVolume exec "amixer set Master 5%-;notify-send 声音:`amixer | grep 'Playback' | awk 'NR==3{;print $5}'`"
 bindsym XF86AudioMute exec "amixer set Master toggle;notify-send 声音:`amixer | grep 'Playback' | awk 'NR==3{;print $6}'`"
 
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+# Audio controls (debian only)(now provided by Plasma)
+# bindsym XF86AudioLowerVolume exec /home/hm/.config/i3/audio.sh --down
+# bindsym XF86AudioRaiseVolume exec /home/hm/.config/i3/audio.sh --up
+#
 
+###############################################################################
+# light
+###############################################################################
+# bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+# bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+#
+# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+
+# for debian10: 
+bindsym XF86MonBrightnessUp exec --no-startup-id "~/tools/light.sh + 50"
+bindsym XF86MonBrightnessDown exec --no-startup-id "~/tools/light.sh - 50"
+
+###############################################################################
 # show Caps_lock status
+###############################################################################
 bindsym Caps_Lock exec --no-startup-id ~/tools/capslock.sh 
 
 ###############################################################################
 # Exit mode
 # Ctrl+Alt+Del shows a menu with exit options
 ###############################################################################
-set $exit_mode "     ➡️     ⛹️[l]ogout  💀[p]oweroff  💞[r]eboot  ⏰[s]uspend  💤[h]ibernate"
+set $exit_mode "     ➡️     ⛹️[e]logout  💀[p]oweroff  💞[r]eboot  ⏰[s]uspend  💤[h]ibernate"
 bindsym Control+Mod1+Delete mode $exit_mode
 
 mode $exit_mode {
-  bindsym l exec --no-startup-id "i3-msg mode default; ~/.config/i3/bin/exit;i3-msg exit"
-  bindsym p exec --no-startup-id "i3-msg mode default; ~/.config/i3/bin/exit;shutdown -h now"
-  bindsym r exec --no-startup-id "i3-msg mode default; ~/.dotfiles/i3/bin/exit;reboot"
-  bindsym s exec --no-startup-id "i3-msg mode default; cinnamon-screensaver-command -l; systemctl suspend"
+  bindsym e exec --no-startup-id "i3-msg mode default; ~/.config/i3/bin/exit;i3-msg exit"
+  bindsym p exec --no-startup-id "i3-msg mode default; ~/.config/i3/bin/exit;systemctl poweroff -i"
+  bindsym r exec --no-startup-id "i3-msg mode default; ~/.dotfiles/i3/bin/exit;systemctl reboot"
+  bindsym s exec --no-startup-id "i3-msg mode default;i3lock -i ~/Pictures/desktop/screenlock.png && sleep 3s && systemctl suspend"
   bindsym h exec --no-startup-id "i3-msg mode default; ~/.config/i3/bin/exit;systemctl hibernate"
 
   # back to normal: Enter or Escape
@@ -308,16 +388,25 @@ mode $exit_mode {
   bindsym Escape    mode "default"
 }
 #
+###############################################################################
 # Open filemanager
+###############################################################################
 # set $filemanager "thunar"
-set $filemanager "nemo"
+# set $filemanager "nemo"
+set $filemanager "dolphin"  # for debian
 bindsym $mod+o exec $filemanager
 
+###############################################################################
 # Desktop Background
+###############################################################################
 # Wind+Shift+D change background
+exec_always --no-startup-id "feh --randomize --bg-scale ~/Pictures/desktop/*"
+# crontab add feh --randomize....
 bindsym $mod+Shift+d exec --no-startup-id "feh --randomize --bg-scale ~/Pictures/desktop/*"
 
+###############################################################################
 # capture screen
+###############################################################################
 # bindsym Mod1+Ctrl+A exec --no-startup-id  gnome-screenshot -a -b -c -f ~/screenshot/Screenshot_`date +%Y%m%d%H%M%S`.png 
 # bindsym Control+Mod1+A exec --no-startup-id scrot -q 100 -sb ~/screenshot/Screenshot_`date +%Y%m%d%H%M%S`.png -e 'xclip -selection clipboard -t image/png -i $f && rm -f $f'
 bindsym Control+Mod1+A --release exec --no-startup-id scrot -q 100 -sb ~/Pictures/screenshot/Screenshot_`date +%Y%m%d%H%M%S`.png -e 'xclip -selection clipboard -t image/png -i $f'

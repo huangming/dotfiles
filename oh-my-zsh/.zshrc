@@ -8,6 +8,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/hm/.oh-my-zsh"
 
@@ -93,15 +94,17 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='vimx'
+  export EDITOR='vim'
 fi
 
 # rdesktop t450 screen friendly
 alias rdp='rdesktop -a 16 -g 1365x722 -r soun    ->   d:local -5 '
 
 # make vim clipbord support
-alias vi='vimx'
-alias vim='vimx'
+alias vi='vim'
+
+# only for fedora
+# alias vim='vimx'
 
 # rm files safe
 alias rm='mv -t /tmp'
@@ -135,3 +138,9 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 HIST_STAMPS="yyyy-mm-dd" 
+
+# export LC_ALL=zh_CN.UTF-8
+# export LANG=zh_CN.UTF-8
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8

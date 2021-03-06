@@ -96,7 +96,7 @@ Plug 'vim-scripts/VisIncr'
 "--------------------------------------------------------
 
 " Track the engine.
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
 Plug 'justinj/vim-react-snippets'
@@ -326,6 +326,9 @@ set scrolloff=5
 set cmdheight=2
 set report=0
 set helplang=cn
+if has('mouse')
+  set mouse=r
+endif
 "set t_Co=256
 " set background=light
 set bsdir=buffer
@@ -395,10 +398,11 @@ if WINDOWS()
     winpos 220 100
     set lines=26
     set columns=85
-else
-    winpos 220 100
-    set lines=28
-    set columns=105
+" debian-kde-konsole 配置lines和columns会引起光标错乱
+"else
+"    winpos 220 100
+"    set lines=40
+"    set columns=140
 endif
 " set lines=8
 " set columns=100
@@ -412,8 +416,8 @@ if has('gui_running')
         set guifont=Yahei_Mono:h12.5
         nmap <F9> :call libcallnr("vimtweak.dll", "SetAlpha", 200)<Left>
     endif
-else
-    set guifont=Monaco:h12.5
+"else
+"    set guifont=Monaco:h12.5
 endif
 
 "---------------------------------------------------------------------------

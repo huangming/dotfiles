@@ -1,0 +1,15 @@
+[PlasmaRunnerManager]
+LaunchCounts=1 services_autostart.desktop,1 services_org.kde.juk.desktop,1 shell_gvim,1 services_netease-cloud-music.desktop,1 services_systemsettings.desktop,41 services_org.kde.konsole.desktop,5 services_keys.desktop,3 services_standard_actions.desktop,2 services_webcamoid.desktop,1 services_vim.desktop,3 services_componentchooser.desktop,1 services_kcm_phonon.desktop,1 services_kamera.desktop,1 services_kwinrules.desktop,5 services_khotkeys.desktop,2 services_debian-xterm.desktop,1 services_kwincompositing.desktop,1 services_org.kde.ksysguard.desktop,1 services_desktop.desktop,1 shell_nano,1 services_org.kde.kate.desktop,2 services_kwinoptions.desktop,4 services_virtualbox.desktop,2 services_kcmnotify.desktop,1 services_debian-uxterm.desktop,2 services_fcitx-configtool.desktop,2 services_kcm_desktoptheme.desktop,1 services_breezedecorationconfig.desktop,1 services_firefox-esr.desktop,1 services_vlc.desktop
+pluginWhiteList=services,places,desktopsessions,PowerDevil,shell,bookmarks,recentdocuments,locations,baloosearch
+
+[PlasmaViews][Panel 2]
+panelVisibility=1
+
+[PlasmaViews][Panel 2][Horizontal1366]
+thickness=26
+
+[ScreenConnectors]
+0=eDP-1
+
+[Updates]
+performed=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/desktop-base.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/obsolete_kickoffrc.js

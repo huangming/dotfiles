@@ -1,4 +1,4 @@
 #!/bin/bash
 
-export DOTFILES=~/Github/0myproj/dotfiles
+export DOTFILES=/home/`whoami`/Github/0myproj/dotfiles
 stow --dir=$DOTFILES --target=$HOME -vv $@
