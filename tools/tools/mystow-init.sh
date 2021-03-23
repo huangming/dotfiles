@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export DOTFILES=~/Github/0myproj/dotfiles
+export DOTFILES=/home/hm/Github/0myproj/dotfiles
  
 pushd >/dev/null 2>&1
 cd $HOME
