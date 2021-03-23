@@ -8,7 +8,7 @@
 
 general {
         colors = true
-        interval = 5
+        interval = 3
 }
 
 # order += "ipv6"
@@ -17,7 +17,7 @@ general {
 # order += "ethernet _first_"
 order += "load"
 order += "ethernet wlp3s0"
-order += "battery all"
+order += "battery 1"
 order += "tztime local"
 
 wireless _first_ {
@@ -39,7 +39,7 @@ ethernet wlp3s0 {
         format_down = ""
 }
 
-battery all {
+battery 1 {
         # format = "⚡%status %percentage %remaining"
         # format = "%status %percentage %remaining %emptytime"
         format = "%status %percentage %remaining"

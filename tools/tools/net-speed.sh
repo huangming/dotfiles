@@ -1,6 +1,29 @@
 #!/bin/sh
-# shell script to prepend i3status with more stuff
 
+# Authors:
+# - Moritz Warning <moritzwarning@web.de> (2016)
+# - Zhong Jianxin <azuwis@gmail.com> (2014)
+#
+# See file LICENSE at the project root directory for license information.
+#
+# i3status.conf should contain:
+# general {
+#   output_format = i3bar
+# }
+#
+# i3 config looks like this:
+# bar {
+#   status_command exec /usr/share/doc/i3status/contrib/net-speed.sh
+# }
+#
+# Single interface:
+# ifaces="eth0"
+#
+# Multiple interfaces:
+# ifaces="eth0 wlan0"
+#
+
+# Auto detect interfaces
 ifaces=$(ls /sys/class/net | grep -E '^(eth|wlan|enp|wlp)')
 
 last_time=0
@@ -12,16 +35,16 @@ readable() {
   local bytes=$1
   local kib=$(( bytes >> 10 ))
   if [ $kib -lt 0 ]; then
-    echo "?K"
+    echo "? K"
   elif [ $kib -gt 1024 ]; then
     local mib_int=$(( kib >> 10 ))
     local mib_dec=$(( kib % 1024 * 976 / 10000 ))
     if [ "$mib_dec" -lt 10 ]; then
       mib_dec="0${mib_dec}"
     fi
-    echo "${mib_int}.${mib_dec}M"
+    echo "${mib_int}.${mib_dec} M"
   else
-    echo "${kib}K"
+    echo "${kib} K"
   fi
 }
 
@@ -48,19 +71,11 @@ update_rate() {
   last_tx=$tx
 }
 
-
-# i3status | while :
 i3status | (read line && echo "$line" && read line && echo "$line" && read line && echo "$line" && update_rate && while :
 do
-    read line
-    update_rate
-    CURRENT_BRIGHTNESS=$(cat /sys/class/backlight/intel_backlight/brightness)
-    MAX_BRIGHTNESS=$(cat /sys/class/backlight/intel_backlight/max_brightness)
-    BRIGHTNESS_PERCENT=$(printf "%d%%" $((CURRENT_BRIGHTNESS*100/MAX_BRIGHTNESS)))
-	info="🔆$BRIGHTNESS_PERCENT  💧$(free -h | grep Mem | awk '{ print $3 }')"
-    # echo "➡️ $info - ${line} ⬅️" || exit 1
-    echo " 🌊`printf "%10s" "$rate"` 💧$(free -h | grep Mem | awk '{ print $3 }') `echo $line|sed 's#|##g'` 🔆$BRIGHTNESS_PERCENT " || exit 1
-    # sleep 1
+  read line
+  update_rate
+  # echo ",[{\"full_text\":\"${rate}\" },${line#,\[}" || exit 1
+  echo " ${rate}  ${line#,\[} " || exit 1
 done)
-
 

@@ -1,0 +1,15 @@
+[Desktop Entry]
+DefaultProfile=kde.profile
+
+[Favorite Profiles]
+Favorites=i3-light.profile
+
+[KonsoleWindow]
+ShowMenuBarByDefault=false
+
+[MainWindow]
+Height 768=743
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAAqYAAALlAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+Width 1366=679

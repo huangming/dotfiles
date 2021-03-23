@@ -1,13 +1,10 @@
 [Appearance]
-ColorScheme=Solarized
+ColorScheme=SolarizedLight
 Font=JetBrains Mono,9,-1,0,50,0,0,0,0,0,Regular
-
-[Encoding Options]
-DefaultEncoding=UTF-8
 
 [General]
 Command=
-Name=kde
+Name=i3-light
 Parent=FALLBACK/
 TerminalColumns=79
 TerminalRows=16
