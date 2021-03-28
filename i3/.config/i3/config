@@ -409,9 +409,19 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         i3bar_command i3bar -t
-        # status_command /home/hm/.config/i3/i3status-debug.sh
-        status_command /home/hm/.config/i3/getBarInfo.sh
         # status_command i3status
+        # status_command /home/hm/.config/i3/i3status-debug.sh
+        # status_command /home/hm/.config/i3/getBarInfo.sh
+        status_command /home/hm/.local/bin/bumblebee-status \
+                -m spotify cpu memory battery-upower publicip amixer brightness date time \
+                -p brightness.use_acpi=true \
+                   date.left-click="gsimplecal" \
+                   memory.format="{used}" \
+                   memory.left-click="ksysguard" \
+                -t iceberg
+                # memory.format="{used}({percent:05.02f}%)" \
+                # -t iceberg-rainbow
+                # -t iceberg-contrast
         separator_symbol " "
         colors {
             statusline #20B2AA
