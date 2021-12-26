@@ -4,6 +4,7 @@ Font=JetBrains Mono,9,-1,0,50,0,0,0,0,0,Regular
 
 [General]
 Command=
+LocalTabTitleFormat=%d : %n\s
 Name=i3-light
 Parent=FALLBACK/
 TerminalColumns=79

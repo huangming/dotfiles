@@ -1,3 +1,5 @@
 vim/.vim/tmp/*/*
 ranger/*/history
 qv2ray/.config/**/*.json
+qv2ray/.config/qv2ray/bugreport
+ranger/.local/share/ranger/history

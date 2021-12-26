@@ -22,6 +22,10 @@ DialogWidth=720
 [Containments][1][Configuration]
 PreloadWeight=0
 
+[Containments][1][General]
+ToolBoxButtonState=topright
+ToolBoxButtonX=1336
+
 [Containments][1][Wallpaper][org.kde.image][General]
 Image=DebianTheme
 
@@ -39,7 +43,7 @@ immutability=1
 plugin=org.kde.plasma.kickoff
 
 [Containments][2][Applets][3][Configuration]
-PreloadWeight=73
+PreloadWeight=92
 
 [Containments][2][Applets][3][Configuration][General]
 favoritesPortedToKAstats=true
@@ -66,7 +70,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][2][Applets][6][Configuration]
-PreloadWeight=65
+PreloadWeight=76
 SystrayContainmentId=7
 
 [Containments][2][Applets][8]
@@ -100,14 +104,14 @@ immutability=1
 plugin=org.kde.plasma.clipboard
 
 [Containments][7][Applets][10][Configuration]
-PreloadWeight=16
+PreloadWeight=0
 
 [Containments][7][Applets][11]
 immutability=1
 plugin=org.kde.plasma.devicenotifier
 
 [Containments][7][Applets][11][Configuration]
-PreloadWeight=70
+PreloadWeight=46
 
 [Containments][7][Applets][12]
 immutability=1
@@ -139,7 +143,7 @@ immutability=1
 plugin=org.kde.discovernotifier
 
 [Containments][7][Applets][15][Configuration]
-PreloadWeight=1
+PreloadWeight=0
 
 [Containments][7][Applets][16]
 immutability=1
@@ -153,7 +157,7 @@ immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][7][Applets][17][Configuration]
-PreloadWeight=1
+PreloadWeight=4
 
 [Containments][7][Applets][18]
 immutability=1
@@ -176,13 +180,18 @@ plugin=org.kde.plasma.volume
 [Containments][7][Applets][9][Configuration]
 PreloadWeight=0
 
+[Containments][7][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
+
 [Containments][7][Configuration]
 PreloadWeight=0
 
 [Containments][7][General]
 extraItems=org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.plasma.clipboard,org.kde.plasma.volume,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.discovernotifier,org.kde.plasma.keyboardindicator
 knownItems=org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.plasma.clipboard,org.kde.plasma.volume,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.discovernotifier,org.kde.plasma.keyboardindicator
+shownItems=Qv2ray
 
 [ScreenMapping]
-itemsOnDisabledScreens=
-screenMapping=
+itemsOnDisabledScreens=0,1,desktop:/WeChat.desktop
+screenMapping=desktop:/WeChat.desktop,0

@@ -27,7 +27,7 @@
             "tag": "_QV2RAY_API_INBOUND_"
         },
         {
-            "listen": "127.0.0.1",
+            "listen": "0.0.0.0",
             "port": 8889,
             "protocol": "http",
             "settings": {
@@ -38,7 +38,7 @@
             "tag": "http_IN"
         },
         {
-            "listen": "127.0.0.1",
+            "listen": "0.0.0.0",
             "port": 1080,
             "protocol": "socks",
             "settings": {
@@ -63,12 +63,12 @@
             "settings": {
                 "vnext": [
                     {
-                        "address": "hk07.v2net.top",
-                        "port": 8309,
+                        "address": "hk05.v2net.top",
+                        "port": 443,
                         "users": [
                             {
                                 "alterId": 0,
-                                "id": "08400E09-299B-6E2A-A8A3-2E7181816AAF",
+                                "id": "692F899C-BE2C-7276-4EA4-D36BF309637C",
                                 "level": 0,
                                 "security": "auto",
                                 "testsEnabled": "none"
@@ -98,7 +98,7 @@
                     "uplinkCapacity": 5,
                     "writeBufferSize": 1
                 },
-                "network": "tcp",
+                "network": "ws",
                 "quicSettings": {
                     "header": {
                         "type": "none"
@@ -106,7 +106,7 @@
                     "key": "",
                     "security": ""
                 },
-                "security": "none",
+                "security": "tls",
                 "sockopt": {
                     "mark": 0,
                     "tcpFastOpen": false,
@@ -146,7 +146,7 @@
                 "wsSettings": {
                     "headers": {
                     },
-                    "path": "/"
+                    "path": "/ray"
                 }
             },
             "tag": "outBound_PROXY"
@@ -178,6 +178,14 @@
                 }
             },
             "tag": "outBound_BLACKHOLE"
+        },
+        {
+            "protocol": "dns",
+            "streamSettings": {
+                "kcpSettings": {
+                }
+            },
+            "tag": "dns-out"
         }
     ],
     "policy": {
@@ -196,6 +204,14 @@
                     "_QV2RAY_API_INBOUND_"
                 ],
                 "outboundTag": "_QV2RAY_API_",
+                "type": "field"
+            },
+            {
+                "inboundTag": [
+                    "socks_IN"
+                ],
+                "outboundTag": "dns-out",
+                "port": "53",
                 "type": "field"
             },
             {

@@ -74,8 +74,12 @@ bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec fish
 # bindsym $mod+Return exec gnome-terminal
 # bindsym $mod+Return exec konsole
+
 # Start a floating terminal
-bindsym $mod+Shift+Return exec "i3-msg border pixel 1;konsole --profile i3-light"
+# bindsym $mod+Shift+Return exec "konsole --profile i3-light"  --role=floating
+# for_window [title="^floating$"] floating enable
+bindsym $mod+Shift+Return exec terminator --role=floating
+for_window [window_role="^floating$"] floating enable
 
 bindsym Control+Mod1+plus exec transset -a --dec 0.1
 bindsym Control+Mod1+minus exec transset -a --inc 0.1
@@ -128,17 +132,19 @@ bindsym Control+Mod1+A --release exec --no-startup-id flameshot gui
 ###########################
 # set $filemanager "thunar"
 # set $filemanager "nemo"
-set $filemanager "dolphin"  # for debian
-bindsym $mod+o exec $filemanager
+#set $filemanager "dolphin"  # for debian
+#bindsym $mod+o exec $filemanager
 
+bindsym $mod+o exec konsole -e ranger
 
 ############################
 # Desktop Background
 ############################
 # Wind+Shift+D change background
-exec_always --no-startup-id "feh --randomize --bg-scale ~/Pictures/desktop/*"
+exec_always --no-startup-id "feh --randomize --no-fehbg --auto-zoom --bg-fill ~/Pictures/desktop/*"
+# bindsym $mod+Shift+d exec --no-startup-id "feh --randomize --nofehbg --bg-scale ~/Pictures/desktop/*"
+bindsym $mod+Shift+d exec --no-startup-id "feh --randomize --no-fehbg --auto-zoom --bg-fill ~/Pictures/desktop/*"
 # crontab add feh --randomize....
-bindsym $mod+Shift+d exec --no-startup-id "feh --randomize --bg-scale ~/Pictures/desktop/*"
 # add crontab job: https://wiki.gentoo.org/wiki/Feh
 # */5 *  *  * * DISPLAY=":0.0" feh --randomize --bg-fill /path/to/wallpaper_library
 
@@ -192,9 +198,11 @@ for_window [title="(?i)firefox"]  move to workspace $ws3
 for_window [title="(?i)teamview"]  move to workspace $ws10
 
 for_window [class="VirtualBox"] floating enable
-for_window [class="(?i)VirtualBox" title="(?i)Manager"] layout tabbed
+#for_window [class="(?i)VirtualBox" title="(?i)Manager"] layout tabbed
+for_window [class="(?i)VirtualBox" title="(?i)Manager"] floating enable
 for_window [class="(?i)VirtualBox" title="(?i)win7"]  move to workspace $ws7
 assign [class="(?i)VirtualBox" title="(?i)win7"]  move to workspace $ws7
+assign [class="(?i)VirtualBox" title="(?i)win7"]  fullscrren toggle global
 
 for_window [window_role="pop-up"]       floating enable
 for_window [class="Menu"]               floating enable
@@ -413,13 +421,20 @@ bar {
         # status_command /home/hm/.config/i3/i3status-debug.sh
         # status_command /home/hm/.config/i3/getBarInfo.sh
         status_command /home/hm/.local/bin/bumblebee-status \
-                -m spotify cpu memory battery-upower publicip amixer brightness date time \
+                -m spotify cpu memory publicip traffic date time battery-upower \
                 -p brightness.use_acpi=true \
                    date.left-click="gsimplecal" \
+                   time.format="%H:%M:%S" \
                    memory.format="{used}" \
                    memory.left-click="ksysguard" \
-                -t iceberg
+                   cpu.interval=5s \
+                   memory.interval=1m \
+                   traffic.showname=false \
+                   traffic.format='{:.1f}' \
+                   traffic.interval=3s \
+                -t iceberg-fix
                 # memory.format="{used}({percent:05.02f}%)" \
+                 # amixer brightness \
                 # -t iceberg-rainbow
                 # -t iceberg-contrast
         separator_symbol " "
