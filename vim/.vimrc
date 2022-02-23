@@ -328,7 +328,7 @@ set report=0
 set helplang=cn
 if has('mouse')
   " set mouse=r
-  set mouse=c
+  set mouse=a
 endif
 "set t_Co=256
 " set background=light

@@ -9,7 +9,7 @@ ShowMenuBarByDefault=false
 ShowWindowTitleOnTitleBar=true
 
 [MainWindow]
-Height 768=737
+Height 768=369
 MenuBar=Disabled
 State=AAAA/wAAAAD9AAAAAAAAAqkAAAL+AAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
