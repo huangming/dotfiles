@@ -98,7 +98,8 @@ else
 fi
 
 # rdesktop t450 screen friendly
-alias rdp='rdesktop -a 16 -g 1365x722 -r soun    ->   d:local -5 '
+#alias rdp='rdesktop -g1365x722 -r sound:local -r clipboard:PRIMARYCLIPBOARD -x 0x81 -z -N -a 32 -5 '
+alias rdp='rdesktop -g1365x742 -r sound:local -r clipboard:PRIMARYCLIPBOARD -x 0x81 -z -N -a 32 -5 '
 
 # make vim clipbord support
 alias vi='vim'

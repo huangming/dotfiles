@@ -52,6 +52,7 @@ let g:ctrlp_follow_symlinks=1
 if executable('git')
     Plug 'tpope/vim-fugitive'
 endif
+Plug 'google/vim-jsonnet'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/vim-easy-align'
