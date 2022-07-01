@@ -101,6 +101,8 @@ fi
 #alias rdp='rdesktop -g1365x722 -r sound:local -r clipboard:PRIMARYCLIPBOARD -x 0x81 -z -N -a 32 -5 '
 alias rdp='rdesktop -g1365x742 -r sound:local -r clipboard:PRIMARYCLIPBOARD -x 0x81 -z -N -a 32 -5 '
 
+alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+
 # make vim clipbord support
 alias vi='vim'
 
